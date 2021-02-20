@@ -13,5 +13,7 @@ describe("Login Workflow", () => {
     cy.get('[data-cy=login-button]').click();
     cy.get('.loader').should('not.exist'); // wait until loader spinner disappears
     cy.get('[class="c:grey3 r:18 ng-star-inserted"]').should('contain', 'Invalid Username or Password.'); // verify server shows invalid username message.
+     // verify user's email still visible on page, no redirection happened
+    cy.get('[data-cy=username-input]').find('input').should('have.value',  USERS.USERS.email);
   });
 });
