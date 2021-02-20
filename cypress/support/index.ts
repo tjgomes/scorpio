@@ -21,13 +21,3 @@ import './commands';
 Cypress.on('uncaught:exception', (err, runnable) => {
   return false;
 });
-
-before(() => {
-  cy.fixture('endpoints/config.json').then((json: any) => {
-    Cypress.env('baseUrl', json[0].baseUrl);
-    Cypress.env('auth', json[1].auth);
-  });
-  cy.getUser().then((res: any) => {
-    Cypress.env('userToken', res.data[0].token);
-  });
-});
